@@ -1,5 +1,6 @@
 # Environment deps.
-/.env
+.env
+.env.backup
 /composer.phar
 
 # IDEs
