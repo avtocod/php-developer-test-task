@@ -76,6 +76,10 @@ HTML-верстка находится в директории `./storage/markup
 - Форматирование исходного кода с помощью `php-cs-fixer` (`$ composer php-cs-fixer`).
 - Успешное прохождение проверок статического анализатора `phpstan` (`$ composer phpstan`).
 
+## Как начать выполнение тестового задания?
+
+Для выполнения задания лучше всего использовать данный репозиторий как шаблон, для чего просто перейдите по [**этой ссылке**][use_this_repo_template].
+
 ## Результат выполнения
 
 Ссылку на репозиторий с вашей реализацией необходимо отправить нашему HR или TeamLead, от которого вы получили ссылку на данный репозиторий.
@@ -97,8 +101,6 @@ $ make test
 
 [badge_build]:https://github.com/avtocod/php-developer-test-task/workflows/build/badge.svg
 [badge_language]:https://img.shields.io/badge/language-php_7.3.x-blue.svg?longCache=true
-[badge_use_template]:https://img.shields.io/badge/start-this_template_using-success.svg?longCache=true
+[badge_use_template]:https://img.shields.io/badge/start-using_this_template-success.svg?longCache=true
 [link_build]:https://github.com/avtocod/php-developer-test-task/actions
-[dataset_link]:https://data.gov.ru/opendata/7704786030-taxiparking
-[prometheus_format]:https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md
 [use_this_repo_template]:https://github.com/avtocod/php-developer-test-task/generate
