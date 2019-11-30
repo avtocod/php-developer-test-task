@@ -51,19 +51,16 @@
         ],
         "phpunit": "@php ./vendor/bin/phpunit -d memory_limit=512M --no-coverage --color=always",
         "phpunit-cover": "@php ./vendor/bin/phpunit -d memory_limit=512M --color=always",
-        "php-cs-fixer-fix": "@php ./vendor/bin/cs-fix --ansi",
-        "php-cs-fixer-check": "@php ./vendor/bin/cs-fix --dry-run --diff --format=txt --ansi",
+        "php-cs-fixer": "@php ./vendor/bin/cs-fix --ansi",
         "phpstan": "@php ./vendor/bin/phpstan analyze --no-progress --level=max --ansi --memory-limit=512M ./app ./routes",
         "test": [
-            "@php-cs-fixer-check",
-            "@phpstan",
             "@phpunit"
         ],
         "analyse": [
             "@phpstan"
         ],
         "fix": [
-            "@php-cs-fixer-fix"
+            "@php-cs-fixer"
         ],
         "clear": [
             "@php artisan config:clear -n --ansi",

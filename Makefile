@@ -10,7 +10,7 @@ cwd = $(shell pwd)
 SHELL = /bin/bash
 RUN_APP_ARGS = --rm --user "$(shell id -u):$(shell id -g)" "$(dc_app_name)"
 
-.PHONY : help install shell test test-cover up down restart logs clean pull
+.PHONY : help install shell migrate test test-cover up down restart logs clean
 .SILENT : help install up down shell
 .DEFAULT_GOAL : help
 
@@ -25,6 +25,9 @@ install: ## Install all app dependencies
 shell: ## Start shell into app container
 	$(dc_bin) run -e $(RUN_APP_ARGS) sh
 
+migrate: ## Migrate application database and generate seeds
+	$(dc_bin) run -e $(RUN_APP_ARGS) ./artisan migrate --force --seed
+
 test: ## Execute app tests
 	$(dc_bin) run $(RUN_APP_ARGS) composer test
 
@@ -35,7 +38,7 @@ test-cover: ## Execute app tests with coverage
 
 up: ## Create and start containers
 	$(dc_bin) up --detach
-	printf " \e[30;48;5;82m  %s  \033[0m\n" 'Navigate your browser to ⇒ http://127.0.0.1:4001'
+	@printf "\n   \e[30;42m %s \033[0m\n\n" 'Navigate your browser to ⇒ http://127.0.0.1:4001';
 
 down: ## Stop and remove containers, networks, images, and volumes
 	$(dc_bin) down -t 5
@@ -48,6 +51,3 @@ logs: ## Show docker logs
 clean: ## Make some clean
 	-$(dc_bin) run -e $(RUN_APP_ARGS) composer clear
 	$(dc_bin) down -v -t 5
-
-pull: ## Pulling newer versions of used docker images
-	$(dc_bin) pull
