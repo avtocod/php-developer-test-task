@@ -5,8 +5,10 @@ declare(strict_types = 1);
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @coversNothing
+ */
 class ExampleTest extends TestCase
 {
     /**

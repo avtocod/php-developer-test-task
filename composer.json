@@ -1,34 +1,32 @@
 {
-    "name": "laravel/laravel",
+    "name": "username/avtocod-php-developer-test",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "PHP developer test task",
     "keywords": [
-        "framework",
-        "laravel"
+        "avtocod",
+        "test-task"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
+        "avto-dev/roadrunner-laravel": "^2.2",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0"
     },
     "require-dev": {
+        "avto-dev/php-cs-fixer": "^1.0",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
+        "phpstan/phpstan": "^0.11.19",
         "phpunit/phpunit": "^8.0"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
     },
     "autoload": {
         "psr-4": {
@@ -44,18 +42,38 @@
             "Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan storage:link"
         ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        "phpunit": "@php ./vendor/bin/phpunit -d memory_limit=512M --no-coverage --color=always",
+        "phpunit-cover": "@php ./vendor/bin/phpunit -d memory_limit=512M --color=always",
+        "php-cs-fixer-fix": "@php ./vendor/bin/cs-fix --ansi",
+        "php-cs-fixer-check": "@php ./vendor/bin/cs-fix --dry-run --diff --format=txt --ansi",
+        "phpstan": "@php ./vendor/bin/phpstan analyze --no-progress --level=max --ansi --memory-limit=512M ./app ./routes",
+        "test": [
+            "@php-cs-fixer-check",
+            "@phpstan",
+            "@phpunit"
         ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+        "analyse": [
+            "@phpstan"
+        ],
+        "fix": [
+            "@php-cs-fixer-fix"
+        ],
+        "clear": [
+            "@php artisan config:clear -n --ansi",
+            "@php artisan cache:clear -n --ansi",
+            "@php artisan route:clear -n --ansi",
+            "@php artisan view:clear -n --ansi",
+            "@php artisan clear-compiled -n --ansi",
+            "@php artisan optimize:clear -n --ansi",
+            "@php -r \"is_file(\\$f = getcwd().'/storage/logs/laravel.log') && file_put_contents(\\$f, null);\"",
+            "@composer dump-autoload -n --ansi"
         ]
     }
 }

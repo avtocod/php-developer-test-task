@@ -14,7 +14,7 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<title>{{ $page_title or config('app.name') }}</title>
+<title>{{ $page_title ?? config('app.name') }}</title>
 
 @section('html_header')
 @show
