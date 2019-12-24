@@ -79,4 +79,4 @@ RUN set -x \
 
 EXPOSE 8080
 
-CMD ["rr", "serve", "-d", "-o", "http.workers.command='php ./vendor/bin/rr-worker'", "-o", "http.address=:8080"]
+CMD ["rr", "serve", "-d", "-o", "http.workers.command='php ./vendor/bin/rr-worker'", "-o", "http.address=:8080", "-o", "http.workers.pool.maxJobs=1"]
