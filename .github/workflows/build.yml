@@ -37,5 +37,8 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-suggest
 
-      - name: Execute phpunit
+      - name: Execute application analyse
+        run: composer analyse
+
+      - name: Execute application tests
         run: composer test
