@@ -3,10 +3,7 @@ name: build
 on:
   push:
     branches:
-      - master
-    tags-ignore:
       - '**'
-  pull_request:
 
 jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-actions>
   phpunit:
@@ -14,7 +11,7 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           fetch-depth: 1
 
@@ -23,11 +20,25 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
         with:
           php-version: 7.3
 
+      - name: Get Composer Cache Directory # Docs: <https://github.com/actions/cache/blob/master/examples.md#php---composer>
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies # Docs: <https://github.com/actions/cache/blob/master/examples.md#php---composer>
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+
       - name: Install Composer 'hirak/prestissimo' package
         run: composer global require hirak/prestissimo --update-no-dev
 
       - name: Install Composer dependencies
-        run: composer update --prefer-dist --no-interaction --no-suggest
+        run: composer install --prefer-dist --no-interaction --no-suggest
 
-      - name: Execute phpunit
-        run: composer phpunit
+      - name: Execute application analyse
+        run: composer analyse
+
+      - name: Execute application tests
+        run: composer test

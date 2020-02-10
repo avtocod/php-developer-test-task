@@ -1,8 +1,8 @@
 # More info: <https://habr.com/ru/post/461687/>
-FROM composer:1.9.1 AS composer
-FROM 512k/roadrunner:1.5.1 AS roadrunner
+FROM composer:1.9.3 AS composer
+FROM 512k/roadrunner:1.5.3 AS roadrunner
 
-FROM php:7.3.12-alpine
+FROM php:7.3.14-alpine
 
 ENV \
     COMPOSER_ALLOW_SUPERUSER="1" \
@@ -40,7 +40,6 @@ RUN set -x \
     && apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community gnu-libiconv \
     && docker-php-ext-configure mbstring --enable-mbstring \
     && docker-php-ext-configure opcache --enable-opcache \
-    && docker-php-ext-configure pdo_pgsql --with-pgsql \
     && docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure pcntl --enable-pcntl \
     && docker-php-ext-configure intl --enable-intl \
@@ -53,6 +52,7 @@ RUN set -x \
         bcmath \
         pcntl \
         intl \
+        pdo \
     && apk del .build-deps \
     && rm -rf /app /home/user ${COMPOSER_HOME} /var/cache/apk/* \
     && mkdir /app /home/user ${COMPOSER_HOME} \
@@ -79,4 +79,12 @@ RUN set -x \
 
 EXPOSE 8080
 
-CMD ["rr", "serve", "-d", "-o", "http.workers.command='php ./vendor/bin/rr-worker'", "-o", "http.address=:8080", "-o", "http.workers.pool.maxJobs=1"]
+# RoadRunner worker package: <https://github.com/avto-dev/roadrunner-laravel>
+CMD [ \
+    "rr", "serve", "-d", \
+    "-o", "http.workers.command='php ./vendor/bin/rr-worker'", \
+    "-o", "http.address=:8080", \
+    "-o", "http.workers.pool.maxJobs=1", \
+    "-o", "env.APP_REFRESH=true", \
+    "-o", "static.dir=public" \
+]

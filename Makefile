@@ -2,7 +2,6 @@
 # Makefile readme (ru): <http://linux.yaroslavl.ru/docs/prog/gnu_make_3-79_russian_manual.html>
 # Makefile readme (en): <https://www.gnu.org/software/make/manual/html_node/index.html#SEC_Contents>
 
-docker_bin := $(shell command -v docker 2> /dev/null)
 dc_bin := $(shell command -v docker-compose 2> /dev/null)
 dc_app_name = app
 cwd = $(shell pwd)
@@ -10,8 +9,8 @@ cwd = $(shell pwd)
 SHELL = /bin/bash
 RUN_APP_ARGS = --rm --user "$(shell id -u):$(shell id -g)" "$(dc_app_name)"
 
-.PHONY : help install shell migrate test test-cover up down restart logs clean
-.SILENT : help install up down shell
+.PHONY : help install 'shell' migrate test test-cover up down restart logs clean
+.SILENT : help install up down 'shell'
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -33,7 +32,7 @@ test: ## Execute app tests
 
 test-cover: ## Execute app tests with coverage
 	$(dc_bin) run --rm --user "0:0" "$(dc_app_name)" sh -c '\
-		apk --no-cache add autoconf make g++ && pecl install xdebug-2.7.2 && docker-php-ext-enable xdebug \
+		apk --no-cache add autoconf make g++ && pecl install xdebug-2.9.1 && docker-php-ext-enable xdebug \
 		&& su $(shell whoami) -s /bin/sh -c "composer phpunit-cover"'
 
 up: ## Create and start containers
