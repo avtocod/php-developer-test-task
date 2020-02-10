@@ -11,7 +11,7 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           fetch-depth: 1
 
