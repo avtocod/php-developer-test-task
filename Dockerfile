@@ -1,6 +1,6 @@
 # More info: <https://habr.com/ru/post/461687/>
 FROM composer:1.9.3 AS composer
-FROM 512k/roadrunner:1.5.3 AS roadrunner
+FROM spiralscout/roadrunner:1.6.1 AS roadrunner
 
 FROM php:7.3.14-alpine
 
