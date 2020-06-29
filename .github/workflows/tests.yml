@@ -21,14 +21,14 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
         with:
           php-version: 7.3
 
-      - name: Start PostgreSQL server
-        run: |
-          docker run --rm -d \
-            -p "5432:5432/tcp" \
-            -e "POSTGRES_DB=forge" \
-            -e "POSTGRES_USER=forge" \
-            -e "POSTGRES_PASSWORD=forge" \
-            postgres:12.3-alpine
+      #- name: Start PostgreSQL server
+      #  run: |
+      #    docker run --rm -d \
+      #      -p "5432:5432/tcp" \
+      #      -e "POSTGRES_DB=forge" \
+      #      -e "POSTGRES_USER=forge" \
+      #      -e "POSTGRES_PASSWORD=forge" \
+      #      postgres:12.3-alpine
 
       - name: Get Composer Cache Directory # Docs: <https://git.io/JfAKn#php---composer>
         id: composer-cache
@@ -52,6 +52,6 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
 
       - name: Execute application tests
         run: composer test
-        env:
-          DB_HOST: 127.0.0.1
-          DB_PORT: 5432
+        #env:
+        #  DB_HOST: 127.0.0.1
+        #  DB_PORT: 5432
