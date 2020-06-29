@@ -10,7 +10,7 @@ on:
 
 jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-actions>
   phpunit:
-    name: Run phpunit
+    name: Run application tests and checks
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
