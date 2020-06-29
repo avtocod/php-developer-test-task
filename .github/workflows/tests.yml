@@ -3,7 +3,10 @@ name: tests
 on:
   push:
     branches:
+      - master
+    tags-ignore:
       - '**'
+  pull_request:
 
 jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-actions>
   phpunit:
