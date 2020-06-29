@@ -1,6 +1,7 @@
 .dockerignore
 Makefile
 docker*.yml
+Dockerfile
 *.log
 .gitignore
 .editorconfig
