@@ -5,9 +5,8 @@ declare(strict_types = 1);
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-class Handler extends ExceptionHandler
+class Handler extends \Illuminate\Foundation\Exceptions\Handler
 {
     /**
      * A list of the exception types that are not reported.
@@ -31,12 +30,13 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param \Exception $exception
+     * @param \Throwable $exception
      *
      * @throws \Exception
+     *
      * @return void
      */
-    public function report(Exception $exception): void
+    public function report(\Throwable $exception): void
     {
         parent::report($exception);
     }
@@ -45,12 +45,13 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception               $exception
+     * @param \Throwable               $exception
      *
-     * @throws Exception
-     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, \Throwable $exception)
     {
         return parent::render($request, $exception);
     }

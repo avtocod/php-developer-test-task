@@ -19,14 +19,14 @@ services:
       - .:/app:cached
       - home-dir:/home/user:cached
     ports:
-      - '4001:8080'
+      - '4001:8080/tcp'
     depends_on:
       - postgres
     networks:
       - app-network
 
   postgres:
-    image: postgres:11.4-alpine
+    image: postgres:12.3-alpine
     environment:
       POSTGRES_DB: 'forge'
       POSTGRES_USER: 'forge'
@@ -35,6 +35,6 @@ services:
       - pg-data:/var/lib/postgresql/data:rw
     ports:
       - 5432
-      - '4005:5432' # Port 4005 for connecting from localhost
+      - '4005:5432/tcp' # Port 4005 for connecting from localhost
     networks:
       - app-network

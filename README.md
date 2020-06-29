@@ -10,6 +10,8 @@
 
 Необходимо с использованием фреймворка `Laravel` реализовать сервис "Стена сообщений".
 
+> Несмотря на то, что приложение вам может показаться очень простым - реализовать его можно по-разному. Выявление уровня знания фреймворка и понимания "лучших практик" - цель этого задания.
+
 ## Описание необходимого функционала
 
 ### Главная страница
@@ -82,7 +84,7 @@ HTML-верстка находится в директории `./storage/markup
 
 Для выполнения задания лучше всего использовать данный репозиторий как шаблон, для чего просто перейдите по [**этой ссылке**][use_this_repo_template].
 
-Данный репозиторий уже содержит `Dockerfile`, `docker-compose.yml` и `Makefile` для быстрого запуска приложения силами `docker` _(нет необходимости устанавливать php, postgres и пр. локально)_. Всё, что необходимо - это установленные локально `docker` и `docker-compose`. После клонирования репозитория просто выполните `make install && make up` - и можно приступать к написанию полезного кода.
+Данный репозиторий уже содержит `Dockerfile`, `docker-compose.yml` и `Makefile` для быстрого запуска приложения силами `docker` _(нет необходимости устанавливать php, postgres и пр. локально)_. Всё, что необходимо - это установленные локально `docker` и `docker-compose`. После клонирования репозитория просто выполните `make install && make up` - и можно приступать к написанию полезного кода. Команда `make up` "запускает приложение" на определенном TCP порту (ссылка на него будет выведена в терминале), HTTP запросы обслуживает [RoadRunner][link_roadrunner]. Для отладки можно пользоваться функциями `\dev\dump()` и `\dev\dd()`.
 
 ## Результат выполнения
 
@@ -103,8 +105,9 @@ $ make up
 $ make test
 ```
 
-[badge_build]:https://github.com/avtocod/php-developer-test-task/workflows/build/badge.svg
+[badge_build]:https://img.shields.io/github/workflow/status/avtocod/php-developer-test-task/tests/master
 [badge_language]:https://img.shields.io/badge/language-php_7.3.x-blue.svg?longCache=true
 [badge_use_template]:https://img.shields.io/badge/start-using_this_template-success.svg?longCache=true
 [link_build]:https://github.com/avtocod/php-developer-test-task/actions
+[link_roadrunner]:https://github.com/spiral/roadrunner
 [use_this_repo_template]:https://github.com/avtocod/php-developer-test-task/generate
