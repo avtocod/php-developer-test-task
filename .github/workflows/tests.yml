@@ -53,12 +53,12 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
         #  DB_HOST: 127.0.0.1
         #  DB_PORT: 5432
 
-  docker-image:
-    name: Build docker image
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Build image
-        run: docker build --tag "app:local" -f ./Dockerfile .
+  #docker-image:
+  #  name: Build docker image
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Check out code
+  #      uses: actions/checkout@v2
+  #
+  #    - name: Build image
+  #      run: docker build --tag "app:local" -f ./Dockerfile .
