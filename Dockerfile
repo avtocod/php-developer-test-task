@@ -56,8 +56,8 @@ WORKDIR /app
 COPY ./composer.* /app/
 
 RUN set -x \
-    && composer install --no-interaction --no-ansi --prefer-dist --no-autoloader --no-scripts \
-    && composer install --no-dev --no-interaction --no-ansi --prefer-dist --no-autoloader --no-scripts \
+    && composer install --no-interaction --no-ansi --prefer-dist --no-autoloader --no-scripts --no-progress \
+    && composer install --no-dev --no-interaction --no-ansi --prefer-dist --no-autoloader --no-scripts --no-progress \
     && chmod -R 777 ${COMPOSER_HOME}
 
 COPY . /app
