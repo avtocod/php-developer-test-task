@@ -10,4 +10,8 @@
         You'r welcome!
     </h1>
 
+    <h5 class="text-center">
+        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+    </h5>
+
 @endsection

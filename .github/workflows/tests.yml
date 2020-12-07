@@ -19,7 +19,7 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2 # Action page: <https://github.com/shivammathur/setup-php>
         with:
-          php-version: 7.3
+          php-version: 7.4
 
       #- name: Start PostgreSQL server
       #  run: |
@@ -28,7 +28,7 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
       #      -e "POSTGRES_DB=forge" \
       #      -e "POSTGRES_USER=forge" \
       #      -e "POSTGRES_PASSWORD=forge" \
-      #      postgres:12.3-alpine
+      #      postgres:13.1-alpine
 
       - name: Get Composer Cache Directory # Docs: <https://git.io/JfAKn#php---composer>
         id: composer-cache
@@ -41,11 +41,8 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
           key: ${{ runner.os }}-composer-${{ matrix.setup }}-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install Composer 'hirak/prestissimo' package
-        run: composer global require hirak/prestissimo --update-no-dev --no-progress --ansi
-
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction --no-suggest --ansi
+        run: composer install --prefer-dist --no-interaction --no-progress --ansi
 
       - name: Execute application analyse
         run: composer analyse
@@ -55,3 +52,13 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
         #env:
         #  DB_HOST: 127.0.0.1
         #  DB_PORT: 5432
+
+  #docker-image:
+  #  name: Build docker image
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Check out code
+  #      uses: actions/checkout@v2
+  #
+  #    - name: Build image
+  #      run: docker build --tag "app:local" -f ./Dockerfile .

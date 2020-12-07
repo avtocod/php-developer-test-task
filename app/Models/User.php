@@ -5,13 +5,14 @@ declare(strict_types = 1);
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @method static static create($attributes = [])
  */
 class User extends \Illuminate\Foundation\Auth\User
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +20,9 @@ class User extends \Illuminate\Foundation\Auth\User
      * @var array<string>
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -28,7 +31,8 @@ class User extends \Illuminate\Foundation\Auth\User
      * @var array<string>
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**

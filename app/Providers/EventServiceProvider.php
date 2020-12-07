@@ -6,9 +6,8 @@ namespace App\Providers;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-class EventServiceProvider extends ServiceProvider
+class EventServiceProvider extends \Illuminate\Foundation\Support\Providers\EventServiceProvider
 {
     /**
      * The event listener mappings for the application.
@@ -28,6 +27,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        parent::boot();
+        //
     }
 }
