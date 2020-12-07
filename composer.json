@@ -8,22 +8,22 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
-        "fideloper/proxy": "^4.2",
+        "php": "^7.4",
+        "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
-        "laravel/framework": "^7.17",
-        "laravel/tinker": "^2.0",
-        "spiral/roadrunner-laravel": "^3.3"
+        "laravel/framework": "^8.12",
+        "laravel/tinker": "^2.5",
+        "spiral/roadrunner-laravel": "^3.7"
     },
     "require-dev": {
         "avto-dev/php-cs-fixer": "^1.1",
-        "avto-dev/stacked-dumper-laravel": "^1.2",
-        "facade/ignition": "^2.0",
-        "fzaninotto/faker": "^1.9.1",
-        "mockery/mockery": "^1.3.1",
-        "nunomaduro/collision": "^4.1",
-        "phpstan/phpstan": "^0.12",
-        "phpunit/phpunit": "^8.5"
+        "avto-dev/stacked-dumper-laravel": "^1.3",
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "phpstan/phpstan": "~0.12.34",
+        "phpunit/phpunit": "^9.3.3"
     },
     "config": {
         "optimize-autoloader": true,
@@ -32,12 +32,10 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
-        },
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ]
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -71,7 +69,6 @@
             "@php artisan view:clear -n --ansi",
             "@php artisan clear-compiled -n --ansi",
             "@php artisan optimize:clear -n --ansi",
-            "@php -r \"is_file(\\$f = getcwd().'/storage/logs/laravel.log') && file_put_contents(\\$f, null);\"",
             "@composer dump-autoload -n --ansi"
         ]
     }

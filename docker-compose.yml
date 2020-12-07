@@ -1,9 +1,5 @@
 version: '3.2'
 
-networks:
-  app-network:
-    driver: bridge
-
 volumes:
   pg-data:
   home-dir:
@@ -22,11 +18,9 @@ services:
       - '4001:8080/tcp'
     depends_on:
       - postgres
-    networks:
-      - app-network
 
   postgres:
-    image: postgres:12.3-alpine
+    image: postgres:13.1-alpine
     environment:
       POSTGRES_DB: 'forge'
       POSTGRES_USER: 'forge'
@@ -36,5 +30,3 @@ services:
     ports:
       - 5432
       - '4005:5432/tcp' # Port 4005 for connecting from localhost
-    networks:
-      - app-network

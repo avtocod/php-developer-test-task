@@ -28,7 +28,7 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
       #      -e "POSTGRES_DB=forge" \
       #      -e "POSTGRES_USER=forge" \
       #      -e "POSTGRES_PASSWORD=forge" \
-      #      postgres:12.3-alpine
+      #      postgres:13.1-alpine
 
       - name: Get Composer Cache Directory # Docs: <https://git.io/JfAKn#php---composer>
         id: composer-cache
@@ -41,11 +41,8 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
           key: ${{ runner.os }}-composer-${{ matrix.setup }}-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install Composer 'hirak/prestissimo' package
-        run: composer global require hirak/prestissimo --update-no-dev --no-progress --ansi
-
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction --no-suggest --ansi
+        run: composer install --prefer-dist --no-interaction --ansi
 
       - name: Execute application analyse
         run: composer analyse

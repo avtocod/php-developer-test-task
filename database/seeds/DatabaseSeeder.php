@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-use Illuminate\Database\Seeder;
+namespace Database\Seeders;
 
-class DatabaseSeeder extends Seeder
+class DatabaseSeeder extends \Illuminate\Database\Seeder
 {
     /**
      * Seed the application's database.
@@ -13,6 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call(UsersTableSeeder::class);
+        // \App\Models\User::factory(10)->create();
     }
 }

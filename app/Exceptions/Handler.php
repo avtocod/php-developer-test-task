@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Exceptions;
 
-use Exception;
+use Throwable;
 
 class Handler extends \Illuminate\Foundation\Exceptions\Handler
 {
@@ -28,31 +28,14 @@ class Handler extends \Illuminate\Foundation\Exceptions\Handler
     ];
 
     /**
-     * Report or log an exception.
-     *
-     * @param \Throwable $exception
-     *
-     * @throws \Exception
+     * Register the exception handling callbacks for the application.
      *
      * @return void
      */
-    public function report(\Throwable $exception): void
+    public function register()
     {
-        parent::report($exception);
-    }
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Throwable               $exception
-     *
-     * @throws \Throwable
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function render($request, \Throwable $exception)
-    {
-        return parent::render($request, $exception);
+        $this->reportable(function (Throwable $e) {
+            //
+        });
     }
 }

@@ -2,27 +2,29 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         colors="true">
+         colors="true"
+>
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
-
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+
+    <coverage processUncoveredFiles="true">
+        <include>
             <directory suffix=".php">./app</directory>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-        <log type="coverage-html" target="./storage/coverage/html"/>
-        <log type="coverage-xml" target="./storage/coverage/xml"/>
-        <log type="coverage-clover" target="./storage/coverage/clover.xml"/>
-    </logging>
+        </include>
+        <report>
+            <clover outputFile="./storage/coverage/clover.xml"/>
+            <html outputDirectory="./storage/coverage/html"/>
+            <text outputFile="php://stdout" showUncoveredFiles="false"/>
+            <xml outputDirectory="./storage/coverage/xml"/>
+        </report>
+    </coverage>
+
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
