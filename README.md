@@ -106,7 +106,7 @@ $ make test
 ```
 
 [badge_build]:https://img.shields.io/github/workflow/status/avtocod/php-developer-test-task/tests/master
-[badge_language]:https://img.shields.io/badge/language-php_7.3.x-blue.svg?longCache=true
+[badge_language]:https://img.shields.io/badge/language-php_7.4.x-blue.svg?longCache=true
 [badge_use_template]:https://img.shields.io/badge/start-using_this_template-success.svg?longCache=true
 [link_build]:https://github.com/avtocod/php-developer-test-task/actions
 [link_roadrunner]:https://github.com/spiral/roadrunner
